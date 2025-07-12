@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TimeStampify - Proof of Creation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { gold: { 300: '#FFD700' } },
+          fontFamily: { loki: ['Cinzel', 'serif'] }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-teal-900 text-gold-300 font-loki transition-colors duration-300">
+  <div class="container mx-auto px-4 py-10">
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-4xl font-bold text-center w-full">TimeStampify 🔒</h1>
+      <button id="toggleTheme" class="absolute top-4 right-4 bg-gold-300 text-teal-900 px-4 py-2 rounded">Toggle Theme</button>
+    </div>
+    <p class="mb-6 text-center">A free legal timestamp tool for creators</p>
+    <form id="uploadForm" class="bg-teal-800 p-6 rounded-lg shadow-lg text-center" enctype="multipart/form-data">
+      <textarea id="textInput" name="text" placeholder="Paste your content here..." rows="8" class="w-full p-3 rounded mb-4 bg-teal-700 text-white"></textarea>
+      <p class="my-2">OR</p>
+      <input type="file" name="file" id="fileInput" class="mb-4" />
+      <br />
+      <button type="submit" class="bg-gold-300 text-teal-900 px-6 py-2 rounded font-bold">Timestamp Now</button>
+    </form>
+    <div id="result" class="mt-6"></div>
+    <div id="badge" class="mt-8 hidden text-center">
+      <span class="inline-block px-6 py-3 rounded-full bg-gold-300 text-teal-900 text-xl font-bold shadow-lg animate-pulse">
+        ✔️ Certificate Ready
+      </span>
+    </div>
+  </div>
+  <script>
+    const toggleBtn = document.getElementById("toggleTheme");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("bg-white");
+      document.body.classList.toggle("text-teal-900");
+    });
+
+    document.getElementById("uploadForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const res = await fetch("/timestamp", { method: "POST", body: formData });
+      const data = await res.json();
+      document.getElementById("result").innerHTML = `
+        <p><strong>SHA-256 Hash:</strong> ${data.hash}</p>
+        <p><strong>Timestamp:</strong> ${data.timestamp}</p>
+        <p><a href='${data.certificate}' target='_blank' class='underline text-gold-300'>Download Certificate (PDF)</a></p>
+      `;
+      document.getElementById("badge").classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
