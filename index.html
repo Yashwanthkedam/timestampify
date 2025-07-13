@@ -45,37 +45,45 @@
       </span>
     </div>
   </div>
+
   <script>
     const toggleBtn = document.getElementById("toggleTheme");
     toggleBtn.addEventListener("click", () => {
       document.body.classList.toggle("bg-white");
       document.body.classList.toggle("text-teal-900");
-    });document.getElementById("uploadForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
-  const formData = new FormData(this);
-  const res = await fetch("https://timestampify-backend.onrender.com", {
-    method: "POST",
-    body: formData,
-  });
-  const data = await res.json();
-  document.getElementById("result").innerHTML = `
-    <p><strong>SHA-256 Hash:</strong> ${data.hash}</p>
-    <p><strong>Timestamp:</strong> ${data.timestamp}</p>
-  `;
-  document.getElementById("badge").classList.remove("hidden");
-});
+    });
 
+    document.getElementById("uploadForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      console.log("🚀 Submitting timestamp request...");
+
+      const res = await fetch("https://timestampify-backend.onrender.com/timestamp", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      console.log("✅ Response received:", data);
+
+      document.getElementById("result").innerHTML = `
+        <p><strong>SHA-256 Hash:</strong> ${data.hash}</p>
+        <p><strong>Timestamp:</strong> ${data.timestamp}</p>
+      `;
+      document.getElementById("badge").classList.remove("hidden");
+    });
   </script>
-  <footer class="mt-12 py-6 text-center text-sm text-gold-300 border-t border-gold-300/30">
-  <p>
-    © <span id="year"></span> <strong>TimeStampify</strong> — Proof You Had It First 🔐
-    <br class="md:hidden">
-    Built with ☕, 🔐, and ✨ by creators, for creators.
-  </p>
-</footer>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+  <footer class="mt-12 py-6 text-center text-sm text-gold-300 border-t border-gold-300/30">
+    <p>
+      © <span id="year"></span> <strong>TimeStampify</strong> — Proof You Had It First 🔐
+      <br class="md:hidden">
+      Built with ☕, 🔐, and ✨ by creators, for creators.
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
