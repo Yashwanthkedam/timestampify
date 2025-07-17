@@ -3,62 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Terms of Use - TimeStampify</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+  <title>Terms of Use – TimeStampify</title>
+  <meta name="description" content="Read the terms of using TimeStampify – a free tool by Yashwanth Kedam.">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            gold: { 300: '#FFD700' }
-          },
-          fontFamily: {
-            loki: ['Cinzel', 'serif']
-          }
+          colors: { gold: { 300: '#FFD700' } },
+          fontFamily: { loki: ['Cinzel', 'serif'] }
         }
       }
     }
   </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-teal-900 text-gold-300 font-loki transition-colors duration-300">
-  <!-- Navbar -->
-  <nav class="flex items-center justify-between px-4 py-4 border-b border-gold-300/30">
-    <a href="index.html" class="text-xl font-bold">TimeStampify</a>
-    <div class="md:hidden">
-      <button id="menuBtn" class="text-gold-300 text-2xl">☰</button>
-    </div>
-    <div id="menu" class="hidden md:flex gap-4">
+<body class="bg-teal-900 text-gold-300 font-loki p-6">
+  <nav class="flex justify-between items-center mb-8">
+    <a href="index.html" class="text-xl font-bold">← Back</a>
+    <div class="space-x-4 hidden md:block">
       <a href="about.html">About</a>
       <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
+      <a href="terms.html" class="underline">Terms</a>
     </div>
+    <button id="menuToggle" class="md:hidden text-xl">☰</button>
   </nav>
 
-  <div class="px-4 py-10 max-w-3xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6">Terms of Use 📜</h1>
-    <p class="mb-4">
-      TimeStampify is a free service intended to help content creators verify the originality and creation time of their work.
-    </p>
-    <p class="mb-4">
-      By using this service, you agree not to misuse it for illegal or unethical purposes. You are solely responsible for the content you upload.
-    </p>
-    <p class="mb-4">
-      The site is offered “as-is” without any warranties. While we strive for accuracy, we are not liable for any misuse or incorrect timestamps.
-    </p>
-    <p>Use wisely. Stay original. Be awesome.</p>
+  <div id="mobileMenu" class="md:hidden hidden mb-6 space-y-2">
+    <a href="about.html" class="block">About</a>
+    <a href="privacy.html" class="block">Privacy</a>
+    <a href="terms.html" class="block underline">Terms</a>
   </div>
 
-  <footer class="mt-12 py-6 text-center text-sm border-t border-gold-300/30">
-    <p>
-      © <span id="year"></span> <strong>TimeStampify</strong> — Proof You Had It First 🔐
-    </p>
-  </footer>
+  <h1 class="text-3xl font-bold mb-4">Terms of Use</h1>
+
+  <p class="mb-4">
+    TimeStampify is offered as-is, with no warranty or guarantee.
+    Use of the tool is at your own discretion. No liability is assumed for timestamps or hash generation results.
+  </p>
+
+  <p class="mb-4">
+    Users are solely responsible for the content they submit. TimeStampify does not store your content, and cannot retrieve or verify it later.
+  </p>
+
+  <p class="mb-4">
+    By using this tool, you agree to the terms outlined here and our privacy-first philosophy.
+  </p>
+
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("menuBtn").addEventListener("click", () => {
-      document.getElementById("menu").classList.toggle("hidden");
-    });
+    document.getElementById("menuToggle").onclick = () => {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    };
   </script>
 </body>
 </html>
