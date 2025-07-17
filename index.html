@@ -135,24 +135,27 @@
       document.getElementById("badge").classList.remove("hidden");
 
       document.getElementById("downloadBtn").addEventListener("click", () => {
-        const cert = `🕒 TimeStampify — Certificate of Originality
+        const cert = `=== TimeStampify — Certificate of Originality ===
 ============================================
 
-📄 Content Digest (SHA-256 Hash):
+ Content Digest (SHA-256 Hash):
 ${data.hash}
 
-⏱️ Timestamp (ISO UTC):
+ Timestamp (ISO UTC):
 ${data.timestamp}
 
 --------------------------------------------
-🛡️ This certificate cryptographically proves
+---
+This certificate cryptographically proves
 that the submitted content existed *exactly*
 at the above time.
 
 TimeStampify does not store your content.
 Only the hash is generated & timestamped.
 
-🔗 Generated via: TimeStampify`;
+- Generated via: TimeStampify
+(https://yashwanthkedam.github.io/timestampify)
+`;
 
         const blob = new Blob([cert], { type: "text/plain" });
         const url = URL.createObjectURL(blob);
