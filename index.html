@@ -4,12 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TimeStampify - Proof of Creation</title>
-  <meta name="description" content="TimeStampify is a free legal timestamp tool for creators. Get SHA-256 hash and proof of creation instantly. Built by Yashwanth Kedam.">
-  <meta name="author" content="Yashwanth Kedam">
-  <meta name="keywords" content="timestamp tool, copyright proof, legal timestamp, hash certificate, sha-256 generator, timestampify">
-  <link rel="canonical" href="https://anthkedam.github.io/timestampify/" />
-  <link rel="icon" type="image/png" href="timestampify-favicon.png" />
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml" />
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,51 +13,57 @@
       theme: {
         extend: {
           colors: {
-            gold: {
-              300: '#FFD700'
-            }
+            gold: { 300: '#FFD700' }
           },
           fontFamily: {
             loki: ['Cinzel', 'serif']
           }
         }
       }
-    }
+    };
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJVB29VTPY"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G8JVB29VTP"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'G-GJVB29VTPY');
+    gtag('config', 'G-G8JVB29VTP');
   </script>
-
-  <!-- Robots -->
-  <meta name="robots" content="index, follow" />
 </head>
 
-<body class="bg-teal-900 text-gold-300 font-loki transition-colors duration-300">
+<body class="bg-teal-900 text-gold-300 font-loki">
   <!-- Sticky Navbar -->
-  <nav class="w-full bg-teal-950 text-gold-300 p-4 sticky top-0 z-50 shadow-md flex flex-wrap items-center justify-between">
-    <div class="text-xl font-bold">TimeStampify</div>
-    <div class="space-x-4 text-base mt-2 sm:mt-0">
-      <a href="about.html" class="hover:underline">About</a>
-      <a href="privacy.html" class="hover:underline">Privacy</a>
-      <a href="terms.html" class="hover:underline">Terms</a>
-      <a href="#donate" class="hover:underline">Donate</a>
+  <nav class="w-full fixed top-0 bg-teal-950 text-gold-300 shadow-md z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <a href="index.html" class="text-xl font-bold">TimeStampify</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="about.html" class="hover:underline">About</a>
+        <a href="privacy.html" class="hover:underline">Privacy</a>
+        <a href="terms.html" class="hover:underline">Terms</a>
+        <a href="#donate" class="hover:underline">Donate</a>
+      </div>
+      <!-- Theme Toggle -->
+      <button id="toggleTheme" class="md:ml-4 text-xl">🌙</button>
+
+      <!-- Hamburger -->
+      <div class="md:hidden">
+        <button id="menuToggle" class="text-xl">☰</button>
+        <div id="mobileMenu" class="hidden absolute right-4 top-16 bg-teal-800 text-gold-300 rounded shadow-md w-40 p-2 space-y-2">
+          <a href="about.html" class="block">About</a>
+          <a href="privacy.html" class="block">Privacy</a>
+          <a href="terms.html" class="block">Terms</a>
+          <a href="#donate" class="block">Donate</a>
+        </div>
+      </div>
     </div>
   </nav>
 
-  <div class="container mx-auto px-4 py-10 relative">
-    <button id="toggleTheme" class="fixed top-4 right-4 z-50 bg-gold-300 text-teal-900 px-4 py-2 rounded shadow-md">Toggle Theme</button>
-
-    <div class="mb-6 pt-12 text-center">
-      <h1 class="text-4xl font-bold">TimeStampify 🔒</h1>
-      <p class="mt-2">A free legal timestamp tool for creators</p>
-    </div>
+  <main class="pt-24 px-4 max-w-3xl mx-auto text-center">
+    <h1 class="text-4xl font-bold mb-2">TimeStampify 🔒</h1>
+    <p class="mb-6">A free legal timestamp tool for creators</p>
 
     <form id="uploadForm" class="bg-teal-800 p-6 rounded-lg shadow-lg text-center" enctype="multipart/form-data">
       <textarea id="textInput" name="text" placeholder="Paste your content here..." rows="8" class="w-full p-3 rounded mb-4 bg-teal-700 text-white"></textarea>
@@ -80,36 +81,45 @@
       </button>
     </div>
 
-    <!-- 🔸 Donation Section -->
-    <section id="donate" class="mt-16 text-center border-t border-gold-300/30 pt-10">
-      <h2 class="text-2xl font-bold mb-4">Support TimeStampify</h2>
-      <p class="mb-2">If you found this useful, consider buying me a coffee or donating via UPI.</p>
-      
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-4">
+    <!-- DONATE SECTION -->
+    <section id="donate" class="mt-16 text-center">
+      <h2 class="text-2xl font-bold mb-2">Support TimeStampify</h2>
+      <p class="mb-4">If you found this useful, consider buying me a coffee or donating via UPI.</p>
+
+      <div class="flex flex-col md:flex-row justify-center items-center gap-4">
         <a href="https://ko-fi.com/yashwanthkedam" target="_blank">
-          <img src="https://storage.ko-fi.com/cdn/kofi5.png" alt="Support Me on Ko-fi" class="w-40" />
+          <img src="https://storage.ko-fi.com/cdn/kofi5.png" alt="Buy Me a Coffee" class="h-12" />
         </a>
         <div class="text-sm">
-          <p class="mb-2 font-semibold">Scan & Pay (PhonePe)</p>
-          <img src="phonepe-qr-code.png" alt="PhonePe QR Code" class="w-40 mx-auto rounded" />
+          <p class="font-bold mb-1">Scan & Pay (PhonePe)</p>
+          <img src="phonepe-qr-code.png" alt="PhonePe QR" class="h-40 mx-auto border border-gold-300" />
           <p class="mt-2">or UPI ID: <strong>yashwanthchinny7@ybl</strong></p>
         </div>
       </div>
     </section>
-  </div>
+  </main>
 
-  <!-- Toggle theme & form logic -->
+  <footer class="mt-12 py-6 text-center text-sm border-t border-gold-300/30">
+    <p>
+      © 2025 <strong>TimeStampify</strong> — Proof You Had It First 🔐 <br />
+      Built with ☕, 🔐, and ✨ by <strong>Yashwanth Kedam</strong>.
+    </p>
+  </footer>
+
   <script>
-    const toggleBtn = document.getElementById("toggleTheme");
-    toggleBtn.addEventListener("click", () => {
+    document.getElementById("toggleTheme").addEventListener("click", () => {
       document.body.classList.toggle("bg-white");
       document.body.classList.toggle("text-teal-900");
+    });
+
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("hidden");
     });
 
     document.getElementById("uploadForm").addEventListener("submit", async function (e) {
       e.preventDefault();
       const formData = new FormData(this);
-
       const res = await fetch("https://timestampify-backend.onrender.com/timestamp", {
         method: "POST",
         body: formData,
@@ -153,17 +163,7 @@ Only the hash is generated & timestamped.
         URL.revokeObjectURL(url);
       });
     });
-  </script>
 
-  <footer class="mt-12 py-6 text-center text-sm text-gold-300 border-t border-gold-300/30">
-    <p>
-      © <span id="year"></span> <strong>TimeStampify</strong> — Proof You Had It First 🔐
-      <br class="md:hidden">
-      Built with ☕, 🔐, and ✨ by <strong>Yashwanth Kedam</strong>.
-    </p>
-  </footer>
-
-  <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
