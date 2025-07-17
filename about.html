@@ -3,62 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About - TimeStampify</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+  <title>About TimeStampify</title>
+  <meta name="description" content="Learn about TimeStampify — a free timestamp tool for creators by Yashwanth Kedam.">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            gold: { 300: '#FFD700' }
-          },
-          fontFamily: {
-            loki: ['Cinzel', 'serif']
-          }
+          colors: { gold: { 300: '#FFD700' } },
+          fontFamily: { loki: ['Cinzel', 'serif'] }
         }
       }
     }
   </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-teal-900 text-gold-300 font-loki transition-colors duration-300">
-  <!-- Navbar -->
-  <nav class="flex items-center justify-between px-4 py-4 border-b border-gold-300/30">
-    <a href="index.html" class="text-xl font-bold">TimeStampify</a>
-    <div class="md:hidden">
-      <button id="menuBtn" class="text-gold-300 text-2xl">☰</button>
-    </div>
-    <div id="menu" class="hidden md:flex gap-4">
-      <a href="about.html">About</a>
+<body class="bg-teal-900 text-gold-300 font-loki p-6">
+  <nav class="flex justify-between items-center mb-8">
+    <a href="index.html" class="text-xl font-bold">← Back</a>
+    <div class="space-x-4 hidden md:block">
+      <a href="about.html" class="underline">About</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
     </div>
+    <button id="menuToggle" class="md:hidden text-xl">☰</button>
   </nav>
 
-  <div class="px-4 py-10 max-w-3xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6">About TimeStampify 🔒</h1>
-    <p class="mb-4">
-      TimeStampify is a free legal timestamp tool for creators of all kinds — writers, developers, poets, musicians, podcasters, and more.
-    </p>
-    <p class="mb-4">
-      It helps you prove that your content existed at a particular moment in time using SHA-256 cryptographic hashing and an ISO-certified timestamp.
-    </p>
-    <p class="mb-4">
-      Built by <strong>Yashwanth Kedam</strong> using love, code, and a strong cup of chai — this tool stores nothing and respects your privacy while empowering you to protect your originality.
-    </p>
-    <p>✨ Secure it. Stamp it. Prove it. For free. Forever.</p>
+  <div id="mobileMenu" class="md:hidden hidden mb-6 space-y-2">
+    <a href="about.html" class="block underline">About</a>
+    <a href="privacy.html" class="block">Privacy</a>
+    <a href="terms.html" class="block">Terms</a>
   </div>
 
-  <footer class="mt-12 py-6 text-center text-sm border-t border-gold-300/30">
-    <p>
-      © <span id="year"></span> <strong>TimeStampify</strong> — Proof You Had It First 🔐
-    </p>
-  </footer>
+  <h1 class="text-3xl font-bold mb-4">About TimeStampify</h1>
+
+  <p class="mb-4">
+    <strong>TimeStampify</strong> is a free, privacy-first timestamping tool that allows creators to prove content ownership — built by <strong>Yashwanth Kedam</strong>, for creators.
+  </p>
+
+  <h2 class="text-2xl font-bold mt-6 mb-2">🔍 What It Does</h2>
+  <p class="mb-4">It generates a SHA-256 hash from your text or file and timestamps it, proving existence at a point in time. No signup. No storage.</p>
+
+  <h2 class="text-2xl font-bold mt-6 mb-2">🔒 Why It Exists</h2>
+  <p class="mb-4">To protect original work in a noisy internet world — be it poetry, code, or design drafts.</p>
+
+  <h2 class="text-2xl font-bold mt-6 mb-2">🛠️ Who Built This</h2>
+  <p class="mb-4">This project was lovingly built by <strong>Yashwanth Kedam</strong> with privacy, simplicity, and freedom in mind. Completely free and open to the community.</p>
+
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    document.getElementById("menuBtn").addEventListener("click", () => {
-      document.getElementById("menu").classList.toggle("hidden");
-    });
+    document.getElementById("menuToggle").onclick = () => {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    };
   </script>
 </body>
 </html>
