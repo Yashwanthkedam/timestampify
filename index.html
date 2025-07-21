@@ -34,12 +34,8 @@
     tailwind.config = {
       theme: {
         extend: {
-          colors: {
-            gold: { 300: '#FFD700' }
-          },
-          fontFamily: {
-            loki: ['Cinzel', 'serif']
-          }
+          colors: { gold: { 300: '#FFD700' } },
+          fontFamily: { loki: ['Cinzel', 'serif'] }
         }
       }
     }
@@ -54,15 +50,11 @@
   <!-- 🔝 Sticky Header -->
   <header class="flex justify-between items-center px-4 py-3 border-b border-gold-300/30 bg-teal-950 sticky top-0 z-50">
     <h1 class="text-xl md:text-2xl font-bold">TimeStampify</h1>
-
-    <!-- 🧭 Desktop Nav -->
     <nav class="hidden md:flex space-x-6 text-gold-300">
       <a href="about.html">About</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
     </nav>
-
-    <!-- 📱 Mobile Menu Button -->
     <div class="md:hidden flex items-center gap-2">
       <button id="mobileMenuBtn">
         <!-- Hamburger Icon -->
@@ -70,7 +62,6 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
-      <!-- 🌗 Theme Toggle -->
       <button id="toggleTheme" class="ml-2 px-2 py-1 bg-gold-300 text-teal-900 rounded text-sm">🌓</button>
     </div>
   </header>
@@ -142,7 +133,7 @@
       menu.classList.toggle("hidden");
     });
 
-    // 📦 Submit Form & Generate Certificate
+    // 🧠 Core Logic: Submit Form and Generate Hash & Certificate
     document.getElementById("uploadForm").addEventListener("submit", async function (e) {
       e.preventDefault();
       const formData = new FormData(this);
@@ -155,6 +146,7 @@
 
       const data = await res.json();
 
+      // Display results
       document.getElementById("result").innerHTML = `
         <p><strong>SHA-256 Hash:</strong> ${data.hash}</p>
         <p><strong>Timestamp:</strong> ${data.timestamp}</p>
@@ -162,8 +154,32 @@
 
       document.getElementById("badge").classList.remove("hidden");
 
+      // 🎫 Generate unique Certificate ID
+      const uniqueId = `ID-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+
+      // 🧾 Certificate Download Handler
       document.getElementById("downloadBtn").addEventListener("click", () => {
-        const cert = `=== TimeStampify — Certificate of Originality ===\n============================================\n\nContent Digest (SHA-256 Hash):\n${data.hash}\n\nTimestamp (ISO UTC):\n${data.timestamp}\n\n${author ? `✍️ Author: ${author}\n` : ''}---\nThis certificate cryptographically proves\nthat the submitted content existed *exactly*\nat the above time.\n\nTimeStampify does not store your content.\nOnly the hash is generated & timestamped.\n\n- Generated via: TimeStampify\n(https://yashwanthkedam.github.io/timestampify)`;
+        const cert = `=== TimeStampify — Certificate of Originality ===
+============================================
+
+Certificate ID: ${uniqueId}
+
+Content Digest (SHA-256 Hash):
+${data.hash}
+
+Timestamp (ISO UTC):
+${data.timestamp}
+
+${author ? `✍️ Author: ${author}\n` : ''}---
+This certificate cryptographically proves
+that the submitted content existed *exactly*
+at the above time.
+
+TimeStampify does not store your content.
+Only the hash is generated & timestamped.
+
+- Generated via: TimeStampify
+(https://yashwanthkedam.github.io/timestampify)`;
 
         const blob = new Blob([cert], { type: "text/plain" });
         const url = URL.createObjectURL(blob);
@@ -176,19 +192,4 @@
     });
   </script>
 </body>
-</html>").classList.remove("hidden");
-
-      document.getElementById("downloadBtn").addEventListener("click", () => {
-        const cert = `=== TimeStampify — Certificate of Originality ===\n============================================\n\nContent Digest (SHA-256 Hash):\n${data.hash}\n\nTimestamp (ISO UTC):\n${data.timestamp}\n\n${author ? `✍️ Author: ${author}\n` : ''}---\nThis certificate cryptographically proves\nthat the submitted content existed *exactly*\nat the above time.\n\nTimeStampify does not store your content.\nOnly the hash is generated & timestamped.\n\n- Generated via: TimeStampify\n(https://yashwanthkedam.github.io/timestampify)`;
-
-        const blob = new Blob([cert], { type: "text/plain" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "timestamp-certificate.txt";
-        link.click();
-        URL.revokeObjectURL(url);
-      });
-    });
-  </script></body>
 </html>
