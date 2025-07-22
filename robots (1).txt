@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://anthkedam.github.io/timestampify/sitemap.xml
+Sitemap: https://yashwanthkedam.github.io/timestampify/sitemap.xml
